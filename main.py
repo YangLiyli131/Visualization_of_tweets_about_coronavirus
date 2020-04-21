@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Apr 19 20:36:50 2020
-Last Updated: Apr 20
+Last Updated: Apr 21
 @author: Yang
 """
 
@@ -34,41 +34,19 @@ degree_cen = nx.algorithms.centrality.degree_centrality(G)
 sorted_degree_cen = sorted(degree_cen.items(), key=operator.itemgetter(1), reverse = True)
 List_degree_users = []
 List_degree_values = []
-for i in range(50):
+for i in range(30):
     List_degree_users.append(sorted_degree_cen[i][0])
     List_degree_values.append(sorted_degree_cen[i][1])
     
-y_pos = np.arange(len(List_degree_users[:10]))   
-plt.figure(figsize=(16,9))
-plt.bar(y_pos, List_degree_values[:10])
+y_pos = np.arange(len(List_degree_users))   
+plt.figure(figsize=(16,12))
+plt.barh(y_pos, List_degree_values)
+plt.gca().invert_yaxis()
 # Create names on the x-axis
-plt.xticks(y_pos, List_degree_users[:10], rotation=-20)
-plt.yticks([])
-plt.title('Top 10')
+plt.yticks(y_pos, List_degree_users)
+plt.xticks([])
 # Show graphic
-plt.savefig('degree_top10.png',dpi = 300)
-plt.show()
-
-y_pos = np.arange(len(List_degree_users[10:30]))   
-plt.figure(figsize=(16,9))
-plt.bar(y_pos, List_degree_values[10:30])
-# Create names on the x-axis
-plt.xticks(y_pos, List_degree_users[10:30], rotation=-20)
-plt.yticks([])
-plt.title('Top 10-30')
-# Show graphic
-plt.savefig('degree_top30.png', dpi = 300)
-plt.show()
-   
-y_pos = np.arange(len(List_degree_users[30:50])) 
-plt.figure(figsize=(16,9))  
-plt.bar(y_pos, List_degree_values[30:50])
-# Create names on the x-axis
-plt.xticks(y_pos, List_degree_users[30:50], rotation=-20)
-plt.yticks([])
-plt.title('Top 30-50')
-# Show graphic
-plt.savefig('degree_top50.png', dpi = 300)
+plt.savefig('degree.png',dpi = 300)
 plt.show()
 
 #################
@@ -103,6 +81,22 @@ for i in range(len(bridges)):
 
 sorted_bridges_freq = sorted(bridges_freq.items(), key=operator.itemgetter(1), reverse = True)
 
+List_bridges_users = []
+List_bridges_values = []
+for i in range(30):
+    List_bridges_users.append(sorted_bridges_freq[i][0])
+    List_bridges_values.append(sorted_bridges_freq[i][1])
+    
+y_pos = np.arange(len(List_bridges_users))   
+plt.figure(figsize=(16,12))
+plt.barh(y_pos, List_bridges_values)
+plt.gca().invert_yaxis()
+# Create names on the x-axis
+plt.yticks(y_pos, List_bridges_users)
+plt.xticks([])
+# Show graphic
+plt.savefig('bridges.png',dpi = 300)
+plt.show()
     
 #################
 #strong_components = nx.algorithms.components.strongly_connected_components(GG)
